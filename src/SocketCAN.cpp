@@ -126,8 +126,9 @@ void SocketCAN::transmit(can_frame_t* frame)
         return;
     }
 
-    // TODO
-    printf("Transmission via SocketCAN is not yet implemented.\n");
+    if (write(sockfd, frame, sizeof(*frame)) != sizeof(*frame)) {
+        perror(" CAN transmission error.");
+    }
 }
 
 
